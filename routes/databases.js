@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
         link: req.body.link,
         advisory: req.body.advisory
     }
-
+    console.log(database)
     Database.create(database).then((database) => {
         res.json(database);
     });
