@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var sequelize = require('sequelize')
+
+/* Our Database model. We will use Sequelize to interact with our data */
+var models = require('../models')
+var Database = models.Database;
 
 /*  NOTE: ALL OF THESE ROUTES ARE CONTAINED WITHIN THE /databases ROUTE  */
 
@@ -12,7 +17,9 @@ router.post('/', function(req, res, next) {
 
 /* Retrieves a list of databases. */
 router.get('/', function(req, res, next) {
-
+    Database.findAll({}).then(results => {
+        res.json(results);
+    })
 });
 
 /* Retrieves a specific database */
