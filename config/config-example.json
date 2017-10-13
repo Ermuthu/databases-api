@@ -1,20 +1,20 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "Zelda1103u",
+    "username": "root",
+    "password": null,
     "database": "databaselist",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "postgres",
+    "username": "root",
     "password": null,
     "database": "databaselist",
     "host": "127.0.0.1",
     "dialect": "postges"
   },
   "production": {
-    "username": "postgres",
+    "username": "root",
     "password": null,
     "database": "databaselist",
     "host": "127.0.0.1",
