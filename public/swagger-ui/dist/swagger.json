@@ -62,6 +62,15 @@
           "produces": [
             "application/json"
           ],
+          "parameters": [
+            {
+              "name": "letter",
+              "in": "query",
+              "description": "The starting letter of the title of the database",
+              "required": false,
+              "type": "string"
+            }                
+          ],
           "responses": {
             "200": {
               "description": "A list of databases.",

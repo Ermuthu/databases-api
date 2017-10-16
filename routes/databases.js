@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('sequelize')
+const Op = sequelize.Op;
 
 //Bring in our authentication method
 var Config = require('../config');
@@ -30,7 +31,14 @@ router.post('/', Config.ensureAuthenticated, function(req, res, next) {
 
 /* Retrieves a list of databases. */
 router.get('/', function(req, res, next) {
-    Database.findAll({}).then(databases => {
+    Database.findAll({
+        where: {
+            title: {
+                [Op.iLike]: (req.query.letter) ? ((req.query.letter)  + '%') : '%%',
+            }
+        },
+        order: ['title']
+    }).then(databases => {
         res.json(databases);
     })
 });
