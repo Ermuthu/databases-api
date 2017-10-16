@@ -29,14 +29,14 @@ router.post('/', Config.ensureAuthenticated, function(req, res, next) {
 });
 
 /* Retrieves a list of databases. */
-router.get('/', Config.ensureAuthenticated, function(req, res, next) {
+router.get('/', function(req, res, next) {
     Database.findAll({}).then(databases => {
         res.json(databases);
     })
 });
 
 /* Retrieves a specific database */
-router.get('/:id', Config.ensureAuthenticated, function(req, res, next){
+router.get('/:id', function(req, res, next){
     Database.findById(req.params.id).then(database => {
         res.json(database)
     })

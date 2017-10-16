@@ -62,14 +62,6 @@
           "produces": [
             "application/json"
           ],
-          "parameters": [
-            {
-            "name": "token",
-            "in": "query",
-            "description": "Token for authentication",
-            "required": true,
-            "type": "string"            
-          }],
           "responses": {
             "200": {
               "description": "A list of databases.",
@@ -141,13 +133,6 @@
         "get": {
             "description": "Returns a database based on a single ID",
             "parameters": [
-              {
-                "name": "token",
-                "in": "query",
-                "description": "Token for authentication",
-                "required": true,
-                "type": "string"            
-              },
               {
                 "name": "id",
                 "in": "path",
