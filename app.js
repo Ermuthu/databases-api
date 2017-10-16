@@ -4,14 +4,31 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var opts = require('./ldap');
 
 var databases = require('./routes/databases');
+var index = require('./routes/index');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+//Use Passport LDAP Strategy for authorization
+var passport = require('passport');
+var LdapStrategy = require('passport-ldapauth').Strategy;
+passport.use(new LdapStrategy(opts));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -22,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/databases', databases);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

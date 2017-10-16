@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('sequelize')
 
+//Bring in our authentication method
+var Config = require('../config');
+
 /* Our Database model. We will use Sequelize to interact with our data */
 var models = require('../models')
 var Database = models.Database;
@@ -11,7 +14,7 @@ var Database = models.Database;
 /* CRUD Operations for Database */
 
 /* Creates a new database */
-router.post('/', function(req, res, next) {
+router.post('/', Config.ensureAuthenticated, function(req, res, next) {
     /* Get the post variables */
     var database = {
         title: req.body.title,
@@ -26,21 +29,21 @@ router.post('/', function(req, res, next) {
 });
 
 /* Retrieves a list of databases. */
-router.get('/', function(req, res, next) {
+router.get('/', Config.ensureAuthenticated, function(req, res, next) {
     Database.findAll({}).then(databases => {
         res.json(databases);
     })
 });
 
 /* Retrieves a specific database */
-router.get('/:id', function(req, res, next){
+router.get('/:id', Config.ensureAuthenticated, function(req, res, next){
     Database.findById(req.params.id).then(database => {
         res.json(database)
     })
 });
 
 /* Replacing an existing database */
-router.put('/:id', function(req, res, next){
+router.put('/:id', Config.ensureAuthenticated, function(req, res, next){
     var database = {
         title: req.body.title,
         body: req.body.body,
@@ -56,7 +59,7 @@ router.put('/:id', function(req, res, next){
 });
 
 /* Updating a specific database*/
-router.patch('/:id', function(req, res, next){
+router.patch('/:id', Config.ensureAuthenticated, function(req, res, next){
     var database = {}
     
     if (req.body.title) database.title = req.body.title;
@@ -72,7 +75,7 @@ router.patch('/:id', function(req, res, next){
 });
 
 /* Deleting a specific database */
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', Config.ensureAuthenticated, function(req, res, next){
     Database.destroy({where: {id: req.params.id}}).then(() => {
         res.send(200);
     })    
