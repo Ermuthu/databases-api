@@ -51,7 +51,11 @@
           ],
           "responses": {
             "200": {
-              "description": "Token Object"
+              "description": "Token Object",
+              "schema": {
+                "type": "array"
+
+              }
             }
           }
         }
