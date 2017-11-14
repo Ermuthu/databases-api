@@ -59,3 +59,4 @@ typings/
 config/config.json
 ldap.js
 token-secret.js
+config/config.json
