@@ -1,9 +1,10 @@
 {
   "development": {
     "username": "postgres",
-    "password": "Zelda1103u",
+    "password": "!Library201708",
     "database": "databaselist",
     "host": "127.0.0.1",
+    "port": 5432,
     "dialect": "postgres"
   },
   "test": {

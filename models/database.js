@@ -1,14 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Database = sequelize.define('Database', {
-    title: {
+    resourceName: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "Unnamed database"
     },
-    body: DataTypes.TEXT,
+    resourceType: DataTypes.STRING,
+    resourceAdvisory: DataTypes.STRING,
+    resourceAdvisoryText: DataTypes.TEXT,
+    shortDescription: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    longDescription: DataTypes.TEXT,
+    coverageDates: DataTypes.STRING,
+    access: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    vendor: DataTypes.STRING,
     link: DataTypes.STRING,
-    advisory: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
