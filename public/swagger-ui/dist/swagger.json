@@ -104,16 +104,65 @@
                 "type": "string"            
               },
               {
-                "name": "title",
+                "name": "resourceName",
                 "in": "formData",
                 "description": "Title of the database",
                 "required": true,
                 "type": "string"
               },
               {
-                "name": "body",
+                "name": "resourceType",
+                "in": "formData",
+                "description": "-----",
+                "required": false,
+                "type": "string"
+              },
+              {
+                "name": "resourceAdvisory",
+                "in": "formData",
+                "description": "-----",
+                "required": false,
+                "type": "string"
+              },
+              {
+                "name": "resourceAdvisoryText",
+                "in": "formData",
+                "description": "-----",
+                "required": false,
+                "type": "string"
+              },
+              {
+                "name": "shortDescription",
+                "in": "formData",
+                "description": "-----",
+                "required": true,
+                "type": "string"
+              },              
+              {
+                "name": "longDescription",
                 "in": "formData",
                 "description": "Description of the database",
+                "required": false,
+                "type": "string"
+              },
+              {
+                "name": "coverageDates",
+                "in": "formData",
+                "description": "-----",
+                "required": false,
+                "type": "string"
+              },
+              {
+                "name": "access",
+                "in": "formData",
+                "description": "-----",
+                "required": true,
+                "type": "string"
+              },
+              {
+                "name": "vendor",
+                "in": "formData",
+                "description": "-----",
                 "required": false,
                 "type": "string"
               },
@@ -121,14 +170,7 @@
                 "name": "link",
                 "in": "formData",
                 "description": "Link to the database",
-                "required": false,
-                "type": "string"
-              },
-              {
-                "name": "advisory",
-                "in": "formData",
-                "description": "",
-                "required": false,
+                "required": true,
                 "type": "string"
               }
             ],
@@ -189,44 +231,92 @@
                     "format": "int64"
                 },
                 {
-                "name": "title",
-                "in": "formData",
-                "description": "Title of the database",
-                "required": false,
-                "allowEmptyValue" : false,
-                "type": "string"
+                  "name": "resourceName",
+                  "in": "formData",
+                  "description": "Title of the database",
+                  "required": true,
+                  "allowEmptyValue": false,
+                  "type": "string"
                 },
                 {
-                "name": "body",
-                "in": "formData",
-                "description": "Description of the database",
-                "required": false,
-                "allowEmptyValue" : true,
-                "type": "string"
+                  "name": "resourceType",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
                 },
                 {
-                "name": "link",
-                "in": "formData",
-                "description": "Link to the database",
-                "required": false,
-                "allowEmptyValue" : true,
-                "type": "string"
+                  "name": "resourceAdvisory",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
                 },
                 {
-                "name": "advisory",
-                "in": "formData",
-                "description": "",
-                "required": false,
-                "allowEmptyValue" : true,
-                "type": "string"
+                  "name": "resourceAdvisoryText",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "shortDescription",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": true,
+                  "allowEmptyValue": false,
+                  "type": "string"
+                },              
+                {
+                  "name": "longDescription",
+                  "in": "formData",
+                  "description": "Description of the database",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "coverageDates",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "access",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": true,
+                  "allowEmptyValue": false,
+                  "type": "string"
+                },
+                {
+                  "name": "vendor",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "link",
+                  "in": "formData",
+                  "description": "Link to the database",
+                  "required": true,
+                  "allowEmptyValue": false,
+                  "type": "string"
                 }
             ],
             "responses": {
                 "200": {
-                "description": "Database response",
-                "schema": {
-                    "$ref": "#/definitions/Database"
-                }
+                  "description": "Database response",
+                  "schema": {
+                      "$ref": "#/definitions/Database"
+                  }
                 }
             }
         },
@@ -255,35 +345,84 @@
                     "format": "int64"
                 },
                 {
-                "name": "title",
-                "in": "formData",
-                "description": "Title of the database",
-                "required": false,
-                "type": "string"
+                  "name": "resourceName",
+                  "in": "formData",
+                  "description": "Title of the database",
+                  "required": false,
+                  "allowEmptyValue": false,
+                  "type": "string"
                 },
                 {
-                "name": "body",
-                "in": "formData",
-                "description": "Description of the database",
-                "required": false,
-                "allowEmptyValue" : false,
-                "type": "string"
+                  "name": "resourceType",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
                 },
                 {
-                "name": "link",
-                "in": "formData",
-                "description": "Link to the database",
-                "required": false,
-                "allowEmptyValue" : false,
-                "type": "string"
+                  "name": "resourceAdvisory",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
                 },
                 {
-                "name": "advisory",
-                "in": "formData",
-                "description": "",
-                "required": false,
-                "allowEmptyValue" : false,
-                "type": "string"
+                  "name": "resourceAdvisoryText",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "shortDescription",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": false,
+                  "type": "string"
+                },              
+                {
+                  "name": "longDescription",
+                  "in": "formData",
+                  "description": "Description of the database",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "coverageDates",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "access",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": false,
+                  "type": "string"
+                },
+                {
+                  "name": "vendor",
+                  "in": "formData",
+                  "description": "-----",
+                  "required": false,
+                  "allowEmptyValue": true,
+                  "type": "string"
+                },
+                {
+                  "name": "link",
+                  "in": "formData",
+                  "description": "Link to the database",
+                  "required": false,
+                  "allowEmptyValue": false,
+                  "type": "string"
                 }
             ],
             "responses": {
@@ -327,28 +466,52 @@
         "type": "object",
         "required": [
           "id",
-          "title",
-          "body",
-          "link",
-          "advisory"
+          "resourceName",
+          "resourceType",
+          "resourceAdvisory",
+          "resourceAdvisoryText",
+          "shortDescription",
+          "longDescription",
+          "coverageDates",
+          "access",
+          "vendor",
+          "link"
         ],
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
           },
-          "title": {
+          "resourceName": {
             "type": "string"
           },
-          "body": {
+          "resourceType": {
+            "type": "string"
+          },
+          "resourceAdvisory": {
+            "type": "string"
+          },
+          "resourceAdvisoryText": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "longDescription": {
+            "type": "string"
+          },
+          "coverageDates": {
+            "type": "string"
+          },
+          "access": {
+            "type": "string"
+          },
+          "vendor": {
             "type": "string"
           },
           "link": {
             "type": "string"
-          },
-          "advisory": {
-            "type": "string"
-          }          
+          }
         }
       }
 

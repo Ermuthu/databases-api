@@ -18,10 +18,16 @@ var Database = models.Database;
 router.post('/', Config.ensureAuthenticated, function(req, res, next) {
     /* Get the post variables */
     var database = {
-        title: req.body.title,
-        body: req.body.body,
+        resourceName: req.body.resourceName,
+        resourceType: req.body.resourceType,
+        resourceAdvisory: req.body.resourceAdvisory,
+        resourceAdvisoryText: req.body.resourceAdvisoryText,
+        shortDescription: req.body.shortDescription,
+        longDescription: req.body.longDescription,
+        coverageDates: req.body.coverageDates,
+        access: req.body.access,
+        vendor: req.body.vendor,
         link: req.body.link,
-        advisory: req.body.advisory
     }
     console.log(database)
     Database.create(database).then((database) => {
@@ -33,11 +39,11 @@ router.post('/', Config.ensureAuthenticated, function(req, res, next) {
 router.get('/', function(req, res, next) {
     Database.findAll({
         where: {
-            title: {
+            resourceName: {
                 [Op.iLike]: (req.query.letter) ? ((req.query.letter)  + '%') : '%%',
             }
         },
-        order: ['title']
+        order: ['resourceName']
     }).then(databases => {
         res.json(databases);
     })
@@ -53,10 +59,16 @@ router.get('/:id', function(req, res, next){
 /* Replacing an existing database */
 router.put('/:id', Config.ensureAuthenticated, function(req, res, next){
     var database = {
-        title: req.body.title,
-        body: req.body.body,
+        resourceName: req.body.resourceName,
+        resourceType: req.body.resourceType,
+        resourceAdvisory: req.body.resourceAdvisory,
+        resourceAdvisoryText: req.body.resourceAdvisoryText,
+        shortDescription: req.body.shortDescription,
+        longDescription: req.body.longDescription,
+        coverageDates: req.body.coverageDates,
+        access: req.body.access,
+        vendor: req.body.vendor,
         link: req.body.link,
-        advisory: req.body.advisory
     }
     
     Database.update(database, {where: {id: req.params.id}}).then(() => {
@@ -70,11 +82,17 @@ router.put('/:id', Config.ensureAuthenticated, function(req, res, next){
 router.patch('/:id', Config.ensureAuthenticated, function(req, res, next){
     var database = {}
     
-    if (req.body.title) database.title = req.body.title;
-    if (req.body.body) database.body = req.body.body;
+    if (req.body.resourceName) database.resourceName = req.body.resourceName;
+    if (req.body.resourceType) database.resourceType = req.body.resourceType;
+    if (req.body.resourceAdvisory) database.resourceAdvisory = req.body.resourceAdvisory;
+    if (req.body.resourceAdvisoryText) database.resourceAdvisoryText = req.body.resourceAdvisoryText;
+    if (req.body.shortDescription) database.shortDescription = req.body.shortDescription;
+    if (req.body.longDescription) database.longDescription = req.body.longDescription;
+    if (req.body.coverageDates) database.coverageDates = req.body.coverageDates;
+    if (req.body.access) database.access = req.body.access;
+    if (req.body.vendor) database.vendor = req.body.vendor;
     if (req.body.link) database.link = req.body.link;
-    if (req.body.advisory) database.advisory = req.body.advisory;
-
+    
     Database.update(database, {where: {id: req.params.id}}).then(() => {
         Database.findById(req.params.id).then(database => {
             res.json(database);
@@ -84,6 +102,7 @@ router.patch('/:id', Config.ensureAuthenticated, function(req, res, next){
 
 /* Deleting a specific database */
 router.delete('/:id', Config.ensureAuthenticated, function(req, res, next){
+    console.log(req.params.id)
     Database.destroy({where: {id: req.params.id}}).then(() => {
         res.send(200);
     })    
